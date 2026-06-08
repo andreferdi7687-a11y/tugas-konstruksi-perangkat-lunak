@@ -1,23 +1,23 @@
-def OrderTiket(jml, hari, member):
-    if hari.upper() == "SABTU" or hari.upper() == "MINGGU":
-        p = jml * 70000
+def hitung_pemesanan_tiket(jumlah_tiket, hari_nonton, status_member):
+    # Mengubah nama fungsi dan variabel menjadi lebih deskriptif sesuai PEP 8
+    if hari_nonton.upper() in ["SABTU", "MINGGU"]:
+        harga_normal = jumlah_tiket * 70000
     else:
-        p = jml * 50000
+        harga_normal = jumlah_tiket * 50000
         
-    d = 0
-    if member == True:
-        if jml >= 3:
-            d = p * 0.10
+    potongan_diskon = 0
+    if status_member:
+        if jumlah_tiket >= 3:
+            potongan_diskon = harga_normal * 0.10
             
-    tot = p - d
+    total_bayar = harga_normal - potongan_diskon
     
     print("=== BIOSKOP XXI - NOTA PEMESANAN ===")
-    print(f"Jumlah Tiket : {jml}")
-    print(f"Harga Normal : Rp{p:,}")
-    print(f"Potongan     : Rp{d:,}")
-    print(f"Total Bayar  : Rp{tot:,}")
+    print(f"Jumlah Tiket : {jumlah_tiket}")
+    print(f"Harga Normal : Rp{harga_normal:,}")
+    print(f"Potongan     : Rp{potongan_diskon:,}")
+    print(f"Total Bayar  : Rp{total_bayar:,}")
     print("====================================")
-    return tot
+    return total_bayar
 
-# Driver code
-OrderTiket(4, "Sabtu", True)
+hitung_pemesanan_tiket(4, "Sabtu", True)
